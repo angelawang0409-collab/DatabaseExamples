@@ -1,10 +1,18 @@
 
-SQL lesson
-##########
+SQL lesson01
+############
 NOTE: This will only work on a MacBook, Codespaces on GitHub, Linux, FreeBSD. DO NOT attempt it on PowerShell. 
+It makes use of the redirect symbol "<" which is standard on the shells in MacBook, Linux, FreeBSD, but is yet to be implemeted on Windows PowerShell.
+
+There are three scripts: import_data.py, CreateTable.sql and SelectAll.sql. The first script is in Python and allows you to import a txt file in comma delimited format (so CSV files). The second two scripts are SQL scripts. First one creates a table with the same or similar settings to the famous Volcanoe database. The second script allows you to see what is in the database.
+
+You should ensure you study the scripts. This lesson is just to get you started. 
+
+STEPS
+#####
 1. Create an sqlite3 database:
 	touch Volcanoes.db 
-   This will create a zero byte file. Nest you create the tables in the file.
+   This will create a zero byte file. Next you create the table(s) in the database.
 2. Create the tables by running the script CreateTable.sql
 	sqlite3 Volcanoes.db < CreateTable.sql
    This will create the table(s) with the settings you specify. Next you add data.
@@ -14,11 +22,11 @@ NOTE: This will only work on a MacBook, Codespaces on GitHub, Linux, FreeBSD. DO
 	3,"Tarawera","Violent","New Zealand",0,"1886",
 4. Run import_data.py:
 	python import_data.py
+   Because this file was an export from MS Access, the script uses the option "utf-8-sig" as the first bytes of the file are the codec.
 5. Run selectAll.sql:
 	sqlite3 Volcanoes < selectAll.sql
 
-Now you have a populated table in your database.
+Note that you can merge steps 1 and 2 and just run
+	sqlite3 Volcanoes.db < CreateTable.sql
 
-1,"Pelee","Violent","Martinique",0,"1932",
-2,"Mauna Loa","Quiet","Hawaii",10,"1984",
-3,"Tarawera","Violent","New Zealand",0,"1886",
+Now you have a populated table in your database.
